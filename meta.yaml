@@ -1,0 +1,21 @@
+{% set setup_py = load_setup_py_data() %}
+
+package:
+    name: 'registered2008'
+    version: {{ setup_py.get('version') }}
+
+source:
+    path: ./
+
+build:
+    noarch: python
+    script: python setup.py install --single-version-externally-managed --record=record.txt
+
+requirements:
+    build:
+        - python
+        - setuptools
+    run:
+        - python
+        - sqlalchemy
+        - dask
